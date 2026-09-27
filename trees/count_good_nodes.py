@@ -11,9 +11,49 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def goodNodes(root: TreeNode) -> int:
-    return
+#
+#
+#
 
+def goodNodes(root: TreeNode) -> int:
+
+    def dfs(node, maxVal):
+        if not node:
+            return 0
+    
+        res = 0
+        if node.val >= maxVal:
+            res = 1
+            maxVal = node.val
+
+        res += dfs(node.left, maxVal)
+        res += dfs(node.right, maxVal)
+        return res 
+    
+    return dfs(root, root.val)
+
+# t.c. = O(n)
+# s.c. = O(h) where h = height of the tree
+
+
+
+# Example 1
+#       3
+#      / \
+#     1   4
+#    /   / \
+#   3   1   5
+
+# callstack = [dfs(3), dfs(4), dfs(5)]
+# res = 0
+
+def dfs(node):
+    if not node:
+        return
+  
+    
+    dfs(node.left)   # Then left subtree
+    dfs(node.right)  # Then right subtree
 
 
 ####
@@ -46,11 +86,11 @@ if __name__ == "__main__":
 
 
     # Example 2
-    #       3
+    #       3 
     #      /
-    #     3
+    #     3 
     #    /
-    #   4
+    #   4 
     #  /
     # 2
     #
